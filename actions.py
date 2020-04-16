@@ -26,7 +26,7 @@ class ActionHelloWorld(Action):
 
         dispatcher.utter_message(text="Hello World!")
 
-        return []
+        return [AllSlotsReset()]
 
 class ActionCovidMailForm(FormAction):
 
@@ -42,12 +42,12 @@ class ActionCovidMailForm(FormAction):
         name = tracker.get_slot('NAME')
         city = tracker.get_slot('CITY')
         mail = tracker.get_slot('MAIL')
-        dispatcher.utter_message(template="utter_mail_send",
+        dispatcher.utter_message(responses="utter_mail_send",
                                  name = name,
                                  city = city,
                                  mail = mail)
         print(name, city, mail)
-        tracker.set('NAME')
+
         return []
 
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
@@ -59,8 +59,8 @@ class ActionCovidMailForm(FormAction):
                 "mail": [self.from_entity(entity="MAIL", intent="mail"),
                          self.from_text()]}
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, any]) -> List[Dict[Text, any]]:
-        print("run method covid")
-        return [AllSlotsReset()]
+    # def run(self, dispatcher: CollectingDispatcher,
+    #         tracker: Tracker,
+    #         domain: Dict[Text, any]) -> List[Dict[Text, any]]:
+    #     print("run method covid")
+    #     return []

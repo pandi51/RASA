@@ -13,20 +13,18 @@ intents:
 - my_name
 - city
 - mail
-forms:
-- covid_mail_form
 entities:
 - NAME
 - CITY
 - MAIL
 slots:
-  NAME:
-    type: unfeaturized
   CITY:
     type: unfeaturized
   MAIL:
     type: unfeaturized
-templates:
+  NAME:
+    type: unfeaturized
+responses:
   utter_greet:
   - text: Hey! How are you?
   utter_cheer_up:
@@ -41,11 +39,11 @@ templates:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_ask_NAME:
-    - text: Your Name?
+  - text: Your Name?
   utter_ask_CITY:
-    - text: Your City?
+  - text: Your City?
   utter_ask_MAIL:
-    - text: Your mail address?
+  - text: Your mail address?
   utter_mail_send:
   - text: Hi {name}, {city} Covid details has been sent to your {mail}
 actions:
@@ -56,3 +54,8 @@ actions:
 - utter_goodbye
 - utter_iamabot
 - utter_mail_send
+- utter_ask_NAME
+- utter_ask_CITY
+- utter_ask_MAIL
+forms:
+- covid_mail_form
