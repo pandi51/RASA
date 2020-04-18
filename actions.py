@@ -13,6 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import AllSlotsReset
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
+# import covid_details as cd
 
 
 class ActionHelloWorld(Action):
@@ -39,16 +40,17 @@ class ActionCovidMailForm(FormAction):
 
     def submit(self, dispatcher: CollectingDispatcher,
                tracker: Tracker, domain: Dict[Text, any])->List[Dict]:
+        print("submit invoked")
         name = tracker.get_slot('NAME')
         city = tracker.get_slot('CITY')
         mail = tracker.get_slot('MAIL')
-        dispatcher.utter_message(responses="utter_mail_send",
+        dispatcher.utter_message(templates="utter_mail_send",
                                  name = name,
                                  city = city,
                                  mail = mail)
         print(name, city, mail)
-
-        return []
+        # cd.mail_send(name,mail,city)
+        return [SlotSet("NAME", None), SlotSet("MAIL", None), SlotSet("CITY", None)]
 
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
         print("slot_mapping invoked")

@@ -24,6 +24,8 @@ slots:
     type: unfeaturized
   NAME:
     type: unfeaturized
+  requested_slot:
+    type: unfeaturized
 responses:
   utter_greet:
   - text: Hey! How are you?
